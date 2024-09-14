@@ -9,7 +9,6 @@ let package = Package(
     ],
     products: [
         .library(name: "Vercel", targets: ["Vercel"]),
-        .library(name: "VercelVapor", targets: ["VercelVapor"]),
         .plugin(name: "VercelPackager", targets: ["VercelPackager"]),
     ],
     dependencies: [
@@ -17,7 +16,6 @@ let package = Package(
         .package(
             url: "https://github.com/swift-server/swift-aws-lambda-runtime", from: "1.0.0-alpha.2"),
         .package(url: "https://github.com/swift-server/async-http-client", from: "1.20.1"),
-        .package(url: "https://github.com/vapor/vapor", from: "4.0.0"),
     ],
     targets: [
         .target(
@@ -26,17 +24,6 @@ let package = Package(
                 .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
                 .product(name: "AsyncHTTPClient", package: "async-http-client"),
                 .product(name: "Crypto", package: "swift-crypto"),
-            ],
-            swiftSettings: [
-                .enableExperimentalFeature("StrictConcurrency")
-            ]
-        ),
-        .target(
-            name: "VercelVapor",
-            dependencies: [
-                .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime"),
-                .product(name: "Vapor", package: "vapor"),
-                .byName(name: "Vercel"),
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
